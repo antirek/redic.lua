@@ -9,6 +9,7 @@ This is initially designed to work with [sohm.lua](https://github.com/xxuejie/so
 # Supported Platforms
 
 * [lua-resty-redis](https://github.com/openresty/lua-resty-redis)
+* [resp](https://github.com/soveran/resp)
 
 # Getting Started
 

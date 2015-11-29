@@ -31,12 +31,16 @@ local deduct_provider = function(db, provider)
   if provider then return provider end
   if type(db.init_pipeline) == "function" then
     return "lua-resty-redis"
+  elseif type(db.call) == "function" and type(db.queue) == "function" then
+    return "resp"
   end
 end
 
 local new = function(db, provider)
   provider = deduct_provider(db, provider)
   if not provider then return "", "No provider is specified!" end
+  -- Resp needs no wrapper
+  if provider == "resp" then return db end
 
   local self = {}
   self._db = db
