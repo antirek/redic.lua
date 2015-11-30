@@ -33,7 +33,7 @@ local resp_queue = function(self, ...)
 end
 
 local resp_commit = function(self, ...)
-  return _wrap_in_commit(self._db.commit, self._db, ...)
+  return _wrap_in_pcall(self._db.commit, self._db, ...)
 end
 
 local providers = setmetatable({}, {
