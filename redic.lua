@@ -1,5 +1,16 @@
+local null = nil
+if type(ngx) == "table" then
+  null = ngx.null
+end
+
+-- Normalize results
+local _n = function(res, err)
+  if res == null then res = nil end
+  return res, err
+end
+
 local resty_call = function(self, cmd, ...)
-  return self._db[string.lower(cmd)](self._db, ...)
+  return _n(self._db[string.lower(cmd)](self._db, ...))
 end
 
 local resty_queue = function(self, cmd, ...)
@@ -12,7 +23,7 @@ local resty_commit = function(self)
     self._db[string.lower(command.cmd)](self._db, unpack(command.args))
   end
   self._queue = {}
-  return self._db:commit_pipeline()
+  return _n(self._db:commit_pipeline())
 end
 
 local _wrap_in_pcall = function(...)
