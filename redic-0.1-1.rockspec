@@ -2,7 +2,7 @@ package = "redic"
 version = "0.1-1"
 
 source = {
-  url = "git://github.com/antirek/redic.git",
+  url = "git://github.com/antirek/redic.lua.git",
   branch = "master"
 }
 
@@ -15,8 +15,7 @@ description = {
 
 dependencies = {
   "lua ~> 5.1",
-  "lua-cmsgpack",
-  "lsocket"
+  "lua-messagepack"
 }
 
 build = {
